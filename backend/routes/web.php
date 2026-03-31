@@ -27,4 +27,7 @@ Route::get('videos/subject/{subjectId}', [VideoController::class, 'getBySubject'
 
 Route::post('users/signup', [UserController::class, 'signup']);
 Route::post('users/signin', [UserController::class, 'signin']);
+Route::get('subjects/{id}', [SubjectController::class, 'show']);
 Route::post('subjects', [SubjectController::class, 'store']);
+Route::delete('subjects/{id}', [SubjectController::class, 'destroy']);
+Route::put('subjects/{id}', [SubjectController::class, 'update']);
