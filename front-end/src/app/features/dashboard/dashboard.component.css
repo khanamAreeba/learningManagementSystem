@@ -1,0 +1,439 @@
+/* ===================================================
+   DASHBOARD WRAPPER
+=================================================== */
+.dashboard-wrapper {
+  min-height: 100vh;
+  background: linear-gradient(135deg, rgba(192, 124, 165, 0.2), #c0d9f0);
+  font-family: Arial, Helvetica, sans-serif;
+  align-items: center;
+  padding: 60px;
+}
+
+.logout-btn {
+  position: absolute;
+  top: 13px;
+  right: 20px;
+
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+
+  background: #ff4d4d;
+  color: white;
+  font-weight: 600;
+
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.logout-btn:hover {
+  background: #e60023;
+  transform: scale(1.05);
+}
+
+/* ===================================================
+   SUBJECT GRID CONTAINER
+=================================================== */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px;
+}
+
+/* ===================================================
+   SUBJECT CARD
+=================================================== */
+.subject-card {
+  background: white;
+  border-radius: 14px;
+  padding: 30px 20px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: 0.3s ease;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+}
+
+.subject-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+  border-radius: 12px;
+  background: linear-gradient(45deg, #6366f1, #8b5cf6);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  z-index: -1;
+}
+
+.subject-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* Subject Card Typography & Icons */
+.subject-card h3 {
+  margin: 10px 0 5px;
+}
+
+.subject-card p {
+  color: #777;
+  font-size: 14px;
+}
+
+.icon {
+  font-size: 40px;
+  margin-bottom: 10px;
+  padding-top: 10px;
+}
+
+.subject-image {
+  width: 60px;
+  height: 60px;
+  margin-top: 10px;
+}
+
+.delete-actions {
+  
+  margin-top: 20px;
+}
+
+.cancel-btn {
+  background: #80bdfa;
+  color: white;
+  height: 30px;
+  border: none;
+  width: 70px;
+  margin-right: 40px;
+}
+
+.delete-confirm-btn {
+  background: red;
+  color: white;
+  height: 30px;
+  border: none;
+  width: 70px;
+  cursor: pointer;
+}
+
+.delete-confirm-btn:hover {
+  background: rgb(196, 14, 14);
+  transition: 0.3em;;
+}
+/* ===================================================
+   BUTTONS
+=================================================== */
+.view-btn {
+  margin-top: 15px;
+  padding: 8px 18px;
+  background: linear-gradient(45deg, #568fe4, #8458e9);
+  border: none;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.back-btn {
+  position: absolute;
+  top: 70px;
+  right: 20px;
+  padding: 8px 18px;
+  background: #6366f1;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* ===================================================
+   TITLES
+=================================================== */
+.subject-title {
+  text-align: center;
+  margin-bottom: 5px;
+  font-weight: 700;
+  font-size: 28px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ===================================================
+   VIDEO SECTION
+=================================================== */
+.video-section {
+  width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.videos-heading {
+  padding-bottom: 20px;
+}
+
+.video-grid {
+  display: grid;
+grid-template-columns: repeat(3, 3fr);
+  gap: 20px;
+  justify-content: center;
+  margin: 20px auto;
+  max-width: 1200px;
+  padding: 0 20px;
+}
+
+.video-card {
+  background: white;
+  border-radius: 14px;
+  padding: 30px 20px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: 0.3s ease;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+}
+
+.video-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+  border-radius: 12px;
+  background: linear-gradient(45deg, #6366f1, #8b5cf6);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  z-index: -1;
+}
+
+.video-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.video-card iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 10px;
+}
+
+.video-card h4 {
+  margin-top: 10px;
+}
+
+/* ===================================================
+   MODAL POPUP
+=================================================== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  background: rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  padding: 40px;
+  border-radius: 15px;
+  text-align: center;
+  width: 400px;
+  position: relative;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+  animation: slide-up 0.4s ease-out;
+}
+
+/* Close Button */
+.close-button {
+  position: absolute;
+  top: 15px;
+  right: 18px;
+  border: none;
+  background: transparent;
+  font-size: 28px;
+  font-weight: 300;
+  cursor: pointer;
+  color: #888;
+  transition: 0.3s;
+  z-index: 100;
+  line-height: 1;
+}
+
+.close-button:hover {
+  color: #333;
+  transform: rotate(90deg);
+}
+
+/* Modal Typography */
+.modal-content h2 {
+  margin-bottom: 8px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 24px;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 25px;
+  line-height: 1.4;
+}
+
+/* Auth Card Style for Modals */
+.auth-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.auth-card::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  padding: 2px;
+  border-radius: 15px;
+  background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  z-index: -1;
+  opacity: 0.4;
+}
+
+/* Input Groups */
+.input-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid #eee;
+  border-radius: 10px;
+  font-size: 14px;
+  transition: 0.3s ease;
+  background: rgba(255, 255, 255, 0.8);
+  box-sizing: border-box;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: #667eea;
+  background: white;
+  box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+}
+
+/* Error Messages */
+.error {
+  margin-top: 6px;
+  padding-left: 4px;
+}
+
+.error span {
+  color: #ff4757;
+  font-size: 12px;
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Modal Button Container - Not needed anymore with full-width buttons */
+.btn-container {
+  display: none;
+}
+
+/* Full width button for forms */
+form button[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+form button[type="submit"]:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+form button[type="submit"]:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* ===================================================
+   ICONS & EDIT / DELETE BUTTONS
+=================================================== */
+.plus-icon {
+  font-size: 80px;
+  margin-bottom: 25px;
+}
+
+.delete-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  height: 22px;
+  cursor: pointer;
+}
+
+.edit-btn {
+  position: absolute;
+  top: 10px;
+  right: 40px;
+  cursor: pointer;
+}
+
+.edit-icon {
+  height: 20px;
+}
+
+/* ===================================================
+   FORM GROUP
+=================================================== */
+.form-group {
+  margin-bottom: 15px;
+}

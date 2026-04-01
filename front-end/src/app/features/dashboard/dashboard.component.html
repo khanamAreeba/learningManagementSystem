@@ -1,0 +1,229 @@
+<div class="dashboard-header"  style=" height: 60px; padding-top: 10px; background: #9f7bf3; color: white; ">
+<div style="display: flex; align-items: center; ">
+  <img src="/lms-logo.png" alt="logo" style="height: 40px; padding-left: 10px; padding-right: 2px;" />
+  <h2 class="dashboard-title">Learning Management System</h2>
+</div>
+</div>
+<div class="dashboard-wrapper">
+
+  <button class="logout-btn" (click)="logout()">
+  Logout
+</button>
+  <!-- SUBJECT GRID -->
+  @if (!selectedSubject) {
+  <h1 class="subject-title">Select Your Subject</h1>
+
+  <!-- ADD SUBJECT POPUP -->
+  @if (showAddCard && subjectForm) {
+  <div class="modal-overlay">
+    <div class="modal-content auth-card">
+      <button class="close-button" (click)="openCloseAddCard()">×</button>
+
+      <h2>Add New Subject</h2>
+      <p class="subtitle">Create a new subject to organize your materials.</p>
+
+      <form [formGroup]="subjectForm" (ngSubmit)="addSubject()">
+        <div class="input-group">
+          <input type="text" formControlName="name" placeholder="Subject Name" />
+          @if (subjectForm.get('name')?.touched && subjectForm.get('name')?.invalid) {
+          <div class="error">
+            @if (subjectForm.get('name')?.errors?.['required']) {
+            <span>Name is required</span>
+            }
+            @if (subjectForm.get('name')?.errors?.['minlength']) {
+            <span>Minimum 3 characters required</span>
+            }
+          </div>
+          }
+        </div>
+
+        <div class="input-group">
+          <input type="text" formControlName="image" placeholder="Image URL" />
+          @if (subjectForm.get('image')?.touched && subjectForm.get('image')?.invalid) {
+          <div class="error">
+            <span>Image URL is required</span>
+          </div>
+          }
+        </div>
+
+        <button type="submit" [disabled]="subjectForm.invalid">
+          Add Subject
+        </button>
+      </form>
+    </div>
+  </div>
+  }
+
+  <!--UPDATE SUBJECT-->
+  @if (showEditCard && subjectForm) {
+  <div class="modal-overlay">
+    <div class="modal-content auth-card">
+      <button class="close-button" (click)="openCloseEditCard()">×</button>
+
+      <h2>Edit Subject</h2>
+      <p class="subtitle">Update your subject details.</p>
+
+      <form [formGroup]="subjectForm" (ngSubmit)="updateSubject()">
+
+        <div class="input-group">
+          <input type="text" formControlName="name" placeholder="Subject Name" />
+          @if (subjectForm.get('name')?.touched && subjectForm.get('name')?.invalid) {
+          <div class="error">
+            @if (subjectForm.get('name')?.errors?.['required']) {
+            <span>Name is required</span>
+            }
+            @if (subjectForm.get('name')?.errors?.['minlength']) {
+            <span>Minimum 3 characters required</span>
+            }
+          </div>
+          }
+        </div>
+
+        <div class="input-group">
+          <input type="text" formControlName="image" placeholder="Image URL" />
+          @if (subjectForm.get('image')?.touched && subjectForm.get('image')?.invalid) {
+          <div class="error">
+            <span>Image URL is required</span>
+          </div>
+          }
+        </div>
+
+        <button type="submit" [disabled]="subjectForm.invalid">
+          Update Subject
+        </button>
+
+      </form>
+    </div>
+  </div>
+  }
+
+  @if (showDeleteCard) {
+<div class="modal-overlay">
+  <div class="modal-content auth-card">
+
+    <button class="close-button" (click)="openCloseDeleteCard()">×</button>
+
+    <h2>Delete Subject</h2>
+    <p class="subtitle">
+      Are you sure you want to delete this subject?
+    </p>
+
+    <div class="delete-actions">
+      <button class="cancel-btn" (click)="openCloseDeleteCard()">
+        Cancel
+      </button>
+
+      <button class="delete-confirm-btn" (click)="deleteSubject()">
+        Delete
+      </button>
+    </div>
+
+  </div>
+</div>
+}
+
+  <div class="card-grid">
+    <!-- ADD SUBJECT CARD -->
+    <div class="subject-card" (click)="openCloseAddCard()">
+      <div class="plus-icon">+</div>
+      <button class="view-btn">Add New Subject</button>
+    </div>
+
+    <!-- SUBJECT CARDS -->
+    @for (subject of subjectsData; track subject.id) {
+    <div class="subject-card" (click)="selectSubject(subject)">
+      <span class="delete-btn" (click)="openCloseDeleteCard(subject.id); $event.stopPropagation()">
+        <img src="/delete.png" alt="delete icon" class="delete-icon" />
+      </span>
+      <span class="edit-btn" (click)="openCloseEditCard(subject); $event.stopPropagation()">
+        <img src="/edit.png" alt="edit icon" class="edit-icon" />
+      </span>
+      
+      <img [src]="getSafeImageUrl(subject.image)" alt="{{ subject.name }} icon"
+        class="subject-image" />
+      <h3>{{ subject.name }}</h3>
+
+      <button class="view-btn" (click)="$event.stopPropagation()">
+        View Details
+      </button>
+    </div>
+    }
+  </div>
+  }
+
+  <!-- DETAIL VIEW -->
+  @if (selectedSubject) {
+  <div class="video-section">
+    <button class="back-btn" (click)="goBack()">← Back</button>
+
+    <h2 class="videos-heading">{{ selectedSubject.name }}</h2>
+    
+    <!-- VIDEO GRID -->
+    <div class="video-grid">
+      <!-- ADD VIDEO CARD -->
+      <div class="video-card add-card" (click)="openCloseAddCardforVideos()">
+        <div class="plus-icon">+</div>
+        <button class="view-btn">Add New Video</button>
+      </div>
+
+      <!-- VIDEOS -->
+      @for (video of selectedSubject.videos; track video.id) {
+      <div class="video-card">
+        <iframe style="margin-top: 5px" [src]="getSafeUrl(video.url)" frameborder="0" allowfullscreen>
+        </iframe>
+
+        <h4>{{ video.title }}</h4>
+        <span class="delete-btn" (click)="deleteVideo(video.id); $event.stopPropagation()">
+          <img src="/delete.png" alt="delete icon" class="delete-icon" />
+        </span>
+      </div>
+      }
+    </div>
+
+    <!-- MODAL -->
+    @if (showVideoCard) {
+    <div class="modal-overlay">
+      <div class="modal-content auth-card">
+        <button class="close-button" (click)="openCloseAddCardforVideos()">
+          ×
+        </button>
+
+        <h2>Add New Video</h2>
+        <p class="subtitle">
+          Add a YouTube link and title to share.
+        </p>
+
+        <form [formGroup]="videoForm" (ngSubmit)="addVideo()">
+          <div class="input-group">
+            <input type="text" formControlName="title" placeholder="Video Title" />
+            @if (videoForm.get('title')?.touched && videoForm.get('title')?.invalid) {
+            <div class="error">
+              @if (videoForm.get('title')?.errors?.['required']) {
+              <span>Title is required</span>
+              }
+              @if (videoForm.get('title')?.errors?.['minlength']) {
+              <span>Minimum 3 characters required</span>
+              }
+            </div>
+            }
+          </div>
+
+          <div class="input-group">
+            <input type="text" formControlName="url" placeholder="Video URL (e.g., https://...)" />
+            @if (videoForm.get('url')?.touched && videoForm.get('url')?.invalid) {
+            <div class="error">
+              <span>Video URL is required</span>
+            </div>
+            }
+          </div>
+
+          <button type="submit" [disabled]="videoForm.invalid">
+            Add Video
+          </button>
+        </form>
+      </div>
+    </div>
+    }
+  </div>
+  }
+</div>
