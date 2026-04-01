@@ -1,4 +1,4 @@
-# 📚 LMS Project – Assignment Week 1
+# 📚 LMS Project
 
 A full-stack **Learning Management System (LMS)** built using **Angular (Frontend)** and **Laravel (Backend API)**.
 This project demonstrates CRUD operations, API integration, and a modular project structure.
@@ -43,16 +43,6 @@ project-root/
 
 ---
 
-## ⚙️ Getting Started
-
-### 🔽 Clone the Repository
-
-```bash
-git clone <your-repository-link>
-cd project-root
-```
-
----
 
 ### 🔧 Backend Setup (Laravel)
 
@@ -104,11 +94,6 @@ ng test
 
 ---
 
-## 📸 Screenshots
-
-*Add screenshots of your UI here (optional but recommended)*
-
----
 
 ## 👩‍💻 Author
 
